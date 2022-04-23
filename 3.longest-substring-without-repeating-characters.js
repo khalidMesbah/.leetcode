@@ -10,24 +10,24 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function (s) {
-  let res = "";
-  let max_res = "";
-  let max = 0;
-  let ft = 1;
+  let max = 0 ,
+    start = 0;
+  const obj = {};
 
-  for (let j = 0; j < s.length; j++) {
-    res = "";
-    for (let i = j; i < s.length; i++) {
-      if (!res.includes(s[i])) {
-        res += s[i];
+  for (let end = 0; end < s.length; end++) {
+    obj[s[end]] = obj[s[end]] + 1 || 1;
+
+    while (obj[s[end]] > 1) {
+      if (obj[s[start]] > 1) {
+        obj[s[start]]--;
       } else {
-        break;
+        delete obj[s[start]];
       }
+      start++;
     }
-    if (ft) (max = res.length), (ft = 0), (max_res = res);
-    if (res.length > max) (max = res.length), (max_res = res);
-  }
 
+    max = Math.max(max, (end - start) + 1);
+  }
   return max;
 };
 // @lc code=end
