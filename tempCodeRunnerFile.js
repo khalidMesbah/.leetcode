@@ -1,1 +1,1 @@
-start - end
+j !== k
