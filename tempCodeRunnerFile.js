@@ -1,1 +1,1 @@
-j !== k
+acc_arr[Math.abs(arr[i])]++;
