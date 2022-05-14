@@ -9,28 +9,17 @@
  * @param {number} n
  * @return {boolean}
  */
-var isHappy = function (n) {
-  let sn = n.toString().split("");
-  //   sn = sn.map(e=>Number(e));
-
-  if (n === 1) return true;
-  let r = 0;
-
-  for (let i = 0; i < sn.length; i++) {
-    r += Number(sn[i]) * Number(sn[i]);
-  }
-
-  if (r !== 1) {
-    if (r.toString().length > 1) {
-      isHappy(r);
-    } else return false;
-
-    return true;
-  }
-  return false;
+var isHappy = function (n, isNotHappy = []) {
+  let nn = String(n);
+  if (n <= 0 || isNotHappy.includes(nn)) return false;
+  isNotHappy.push(nn);
+  let res = 0;
+  for (let i = 0; i < nn.length; i++) res += (+nn[i]) ** 2;
+  if (res === 1) return true;
+  return isHappy(res, isNotHappy);
 };
 // @lc code=end
 
 console.log(isHappy(19));
 console.log(isHappy(2));
-console.log(isHappy(1));
+console.log(isHappy(10));

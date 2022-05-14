@@ -11,30 +11,18 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-    s = s.split("");
-    t=t.split("");
-    if(s.length !== t.length) return false;
-    for (let i = 0; i < s.length; i++) {
-      for (let j = 0; j < t.length; j++) {
-        if (s[i] === t[j]) {
-            s[i] = 1;
-            t[j] = 1;
-        }
-      }
-    }
-
-  for (let i = 0; i < s.length; i++) {
-   if(s[i] !== 1) return false;
-  }
-
-
+  let s_arr = Array(122).fill(0);
+  let t_arr = Array(122).fill(0);
+  for (let i = 0; i < s.length; i++) s_arr[s[i].charCodeAt(0)]++;
+  for (let i = 0; i < t.length; i++) t_arr[t[i].charCodeAt(0)]++;
+  for (let i = 0; i < 122; i++) if (s_arr[i] !== t_arr[i]) return false;
   return true;
 };
 // @lc code=end
 
-console.log(isAnagram("khaled", "delahk"));
 console.log(isAnagram("anagram", "nagaram"));
-console.log(isAnagram("rat", "car"));
-console.log(isAnagram("a", "ab"));
-console.log(isAnagram("aacc", "ccac"));
-console.log(isAnagram("aacc", "ccac"));
+// console.log(isAnagram("khaled", "delahk"));
+// console.log(isAnagram("rat", "car"));
+// console.log(isAnagram("a", "ab"));
+// console.log(isAnagram("aacc", "ccac"));
+// console.log(isAnagram("aacc", "ccac"));

@@ -1,1 +1,1 @@
-acc_arr[Math.abs(arr[i])]++;
+&& i + n - 2 * r > s.length
