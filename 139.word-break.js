@@ -11,20 +11,23 @@
  * @return {boolean}
  */
 var wordBreak = function (s, wordDict) {
-  let i = -1;
-  while (i++ < wordDict.length) {
-    if (s.startsWith(wordDict[i])) {
-      s = s.slice(wordDict[i].length);
-    } else {
-      i = 0;
+  const table = new Array(s.length + 1).fill(false);
+  table[0] = true;
+  for (let i = 0; i < table.length; i++) {
+    if (table[i] === false) continue;
+    for (let j = i + 1; j < table.length; j++) {
+      if (wordDict.includes(s.slice(i, j))) {
+        table[j] = true;
+      }
     }
-    console.log(s);
-    if (s === "") break;
   }
-  if (s === "") return true;
-  return false;
+  return table[table.length - 1];
 };
 // @lc code=end
-// wordBreak("leetcode", ["leet", "code"]);
 // console.log(wordBreak("leetcode", ["leet", "code"]));
-console.log(wordBreak("applepenapple", ["apple", "pen"]));
+// console.log(wordBreak("applepenapple", ["apple", "pen"]));
+// console.log(wordBreak("catsandog", ["cats", "dog", "sand", "and", "cat"]));
+
+// console.log(wordBreak("aaaaaaa", ["aaaa", "aaa"]));
+console.log(wordBreak("goalspecial", ["go", "goal", "goals", "special"]));
+// console.log(wordBreak("bb", ["a", "b", "bbb", "bbbb"]));
