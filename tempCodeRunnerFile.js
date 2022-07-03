@@ -1,1 +1,1 @@
-forEach
+join('');
